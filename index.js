@@ -60,3 +60,98 @@ console.log("== array.length:", array.length)
 for (var i = 0; i < array.length; i++) {
     console.log("  -- ", array[i])
 }
+
+console.log("\n\n======================")
+console.log("== Functions")
+console.log("======================")
+
+function add(a, b, c) {
+    console.log("== add() called with arguments:", arguments)
+    if (c) {
+        return a + b + c
+    } else {
+        // c is undefined
+        return a + b
+    }
+}
+
+function subtract(a, b, c) {
+    return a - b - c
+}
+
+console.log("== add(1, 2, 3):", add(1, 2, 3))
+console.log("== add('1', '2', '3'):", add('1', '2', '3'))
+console.log("== add('1', 2, 3):", add('1', 2, 3))
+console.log("== add('1', '2'):", add('1', '2'))
+console.log("== add(1, 2, 3, 4, 5, 6):", add(1, 2, 3, 4, 5, 6))
+
+var functionVariable = add
+console.log("== functionVariable:", functionVariable)
+console.log("== functionVariable(1, 2, 3):", functionVariable(1, 2, 3))
+
+function foo(fn, a, b, c) {
+    console.log("== in foo(), fn(a, b, c):", fn(a, b, c))
+}
+foo(add, 1, 2, 3)
+foo(subtract, 1, 2, 3)
+foo(function (a, b, c) {
+    return a * b * c
+}, 4, 5, 6)
+
+console.log("== Looping through array with forEach()")
+array.forEach(function (elem) {
+    console.log("  -- elem:", elem);
+})
+
+console.log("== Looping through array with forEach() with index")
+array.forEach(function (elem, idx) {
+    console.log("  -- elem:", elem, "idx:", idx);
+})
+
+console.log("\n\n======================")
+console.log("== Objects")
+console.log("======================")
+
+var person = {
+    firstName: "Luke",
+    lastName: "Skywalker",
+    getFullName: function () {
+        return this.firstName + " " + this.lastName
+    }
+}
+
+console.log("== person:", person)
+console.log("== person['firstName']:", person['firstName'])
+console.log("== person.firstName:", person.firstName)
+
+var fieldName = "lastName"
+console.log("== person[fieldName]:", person[fieldName])
+
+console.log("== person.getFullName():", person.getFullName())
+
+var person2 = {
+    firstName: "Leia",
+    lastName: "Organa",
+    getFullName: function () {
+        return this.firstName + " " + this.lastName
+    }
+}
+
+console.log("== person2:", person2)
+
+function Person(firstName, lastName) {
+    this.firstName = firstName
+    this.lastName = lastName
+}
+
+Person.prototype.getFullName = function () {
+    return this.firstName + " " + this.lastName
+}
+
+var p1 = new Person("Luke", "Skywalker")
+console.log("== p1:", p1)
+console.log("== p1.getFullName():", p1.getFullName())
+
+var p2 = new Person("Leia", "Organa")
+console.log("== p2:", p2)
+console.log("== p2.getFullName():", p2.getFullName())
